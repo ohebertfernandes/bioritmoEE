@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Marketing Strategy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      :root {
+        /* Cores da V4 Company */
+        --v4-red: #e50914;
+        --v4-black: #000000;
+        --v4-dark: #1a1a1a;
+        --v4-light: #f5f5f5;
+        
+        /* Cores pastéis para as linhas */
+        --pastel-pink: #ffe6e6;
+        --pastel-peach: #fff0e6;
+        --pastel-mint: #e6fff2;
+        --pastel-yellow: #fffbe6;
+        --pastel-blue: #e6f2ff; /* Adicionado para a 5ª jornada */
+        
+        /* Cores escuras para as colunas de jornada */
+        --dark-pink: #ffcccc;
+        --dark-peach: #ffd9cc;
+        --dark-mint: #ccffe0;
+        --dark-yellow: #fff5cc;
+        --dark-blue: #cce5ff; /* Adicionado para a 5ª jornada */
+
+        /* Cores reais dos logotipos e ícones */
+        --google-blue: #4285F4;
+        --facebook-blue: #1877F2;
+        --instagram-purple: #8a3ab9;
+        --instagram-pink: #cd486b;
+        --instagram-orange: #fbad50;
+        --instagram-yellow: #fccc63;
+        --whatsapp-green: #25D366;
+        --excel-green: #217346;
+        --dollar-green: #28a745;
+        --youtube-red: #FF0000;
+        --crm-blue: #007bff;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body, html {
+        height: 100vh;
+        width: 100vw;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: var(--v4-dark);
+        color: white;
+        overflow: auto; 
+      }
+      
+      .slide-container {
+        width: 100%;  
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+      }
+      
+      .comparison-table {
+        background: var(--v4-black);
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1300px;
+        flex-grow: 1;
+        display: grid;
+        grid-template-rows: auto repeat(5, 1fr); /* Atualizado para 5 jornadas */
+        overflow: hidden; 
+        margin-bottom: 1.5rem;
+      }
+      
+      .table-header {
+        background: var(--v4-red);
+        color: white;
+        padding: 0.75rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+      
+      .table-row:first-child .table-header:first-child { border-top-left-radius: 15px; }
+      .table-row:first-child .table-header:last-child { border-top-right-radius: 15px; }
+      
+      .table-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 100%;
+      }
+      
+      .table-cell {
+        padding: 0.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #333;
+        position: relative;
+        border-right: 1px dashed rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px; 
+      }
+      
+      .table-cell:last-child {
+        border-right: none;
+      }
+      
+      .journey-name {
+        font-weight: bold;
+        color: #333;
+        font-size: 0.95rem;
+        position: relative; 
+        border-radius: 8px; 
+      }
+      
+      .journey-name .audience-tag {
+        font-size: 0.75rem;
+        font-style: italic;
+        background: rgba(0,0,0,0.08);
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-top: 6px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .delivery-date-tag {
+        font-size: 0.75rem;
+        font-style: italic;
+        background: rgba(0,0,0,0.08);
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-top: 6px;
+        display: inline-flex;
+        align-items: center;
+        color: #6c757d; 
+      }
+      
+      .audience-tag i, .delivery-date-tag i {
+        margin-right: 6px;
+      }
+      
+      .icon-cell {
+        font-size: 1.3rem;
+        margin-bottom: 0.35rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      
+      .icon-wrapper {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+      .icon-wrapper:hover {
+        transform: scale(1.1);
+      }
+      
+      /* Estilos da caixa de descrição (Tooltip) */
+      .journey-description {
+        position: absolute;
+        top: 50%; 
+        left: 100%; 
+        transform: translateY(-50%) translateX(10px); 
+        width: 380px; 
+        padding: 0.75rem 1rem; 
+        background-color: var(--v4-dark);
+        color: white;
+        border-radius: 8px;
+        border: 1px solid var(--v4-red);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 100;
+        text-align: left;
+        font-weight: normal;
+        font-size: 0.85rem;
+        pointer-events: none; 
+      }
+      
+      .journey-description strong {
+        color: var(--v4-red);
+      }
+      .journey-name:hover .journey-description {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(0); 
+      }
+      
+      /* Cores dos ícones */
+      .google-icon { background-color: #ffffff; color: var(--google-blue); }
+      .facebook-icon { background-color: var(--facebook-blue); color: white; }
+      .instagram-icon { background: linear-gradient(45deg, var(--instagram-purple), var(--instagram-pink), var(--instagram-orange)); color: white; }
+      .youtube-icon { background-color: var(--youtube-red); color: white; }
+      .video-icon { background-color: #c0392b; color: white; } 
+      .eye-icon { background-color: #27ae60; color: white; } 
+      .file-alt-icon { background-color: #3498db; color: white; } 
+      .globe-icon { background-color: #2980b9; color: white; } 
+      .cogs-icon { background-color: var(--crm-blue); color: white; } 
+      .headset-icon { background-color: #8e44ad; color: white; } 
+      .dollar-icon { background-color: var(--dollar-green); color: white; }
+      .users-icon { background-color: #f39c12; color: white; } 
+      .hand-holding-usd-icon { background-color: #2ecc71; color: white; } 
+      
+      /* Ícones Novos */
+      .whatsapp-icon { background-color: var(--whatsapp-green); color: white; }
+      .robot-icon { background-color: #7f8c8d; color: white; }
+      .marker-icon { background-color: #e74c3c; color: white; }
+      .brain-icon { background-color: #f1c40f; color: white; }
+      .ticket-icon { background-color: #9b59b6; color: white; }
+      .envelope-icon { background-color: #e67e22; color: white; }
+      .share-icon { background-color: #34495e; color: white; }
+      .crown-icon { background-color: #f1c40f; color: white; }
+
+      /* Cores para tags de público */
+      .cold-audience { color:#3498db; } /* Frio */
+      .warm-audience { color:#f39c12; } /* Morno */
+      .hot-audience { color:#e74c3c; } /* Quente */
+      .mixed-audience { color:#9b59b6; } /* Frio & Morno */
+      
+      .footer-note {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px; 
+        padding: 1rem;
+        border-left: 4px solid var(--v4-red);
+        width: 100%;
+        max-width: 1300px;
+        flex-shrink: 0;
+      }
+      .footer-note h3 {
+        font-size: 1.1rem;
+      }
+      .footer-note p {
+        font-size: 0.9rem;
+      }
+      
+      .arrow-container {
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 24px;
+        height: 16px;
+      }
+      
+      .arrow {
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+        animation: pulse 1.5s infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <div class="comparison-table">
+        <div class="table-row">
+          <div class="table-header">Jornada</div>
+          <div class="table-header">Tráfego</div>
+          <div class="table-header">Engajamento</div>
+          <div class="table-header">Conversão</div>
+        </div>
+        
+        <!-- Jornada 1: Jornada A -->
+        <div class="table-row" style="background: var(--pastel-pink);">
+          <div class="table-cell journey-name" style="background: var(--dark-pink);">
+            <div class="icon-cell"><div class="icon-wrapper whatsapp-icon"><i class="fab fa-whatsapp"></i></div></div>
+            <strong>Jornada A</strong><span>Monetização via WhatsApp</span>
+            <span class="audience-tag"><i class="fas fa-fire warm-audience"></i>Público Morno (Já te Conhece)</span>
+            <span class="delivery-date-tag"><i class="fas fa-calendar-alt"></i>1 a 7 de Abril de 2026</span>
+            <div class="journey-description">
+              <strong>Pontos Importantes:</strong>
+              <p>Foco na utilização do WhatsApp associado à IA para rápida qualificação e agendamento de visita presencial, maximizando a conversão através do relacionamento.</p>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper facebook-icon"><i class="fab fa-facebook-f"></i></div>
+              <div class="icon-wrapper instagram-icon"><i class="fab fa-instagram"></i></div>
+            </div>
+            Meta ADS
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper robot-icon"><i class="fas fa-robot"></i></div>
+              <div class="icon-wrapper whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            SDR IA (WHATSAPP)
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper marker-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="icon-wrapper headset-icon"><i class="fas fa-headset"></i></div>
+              <div class="icon-wrapper dollar-icon"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <span>Visita presencial <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Atd <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Vendas</span>
+          </div>
+        </div>
+        
+        <!-- Jornada 2: Jornada B -->
+        <div class="table-row" style="background: var(--pastel-peach);">
+          <div class="table-cell journey-name" style="background: var(--dark-peach);">
+            <div class="icon-cell"><div class="icon-wrapper globe-icon"><i class="fas fa-globe"></i></div></div>
+            <strong>Jornada B</strong><span>Monetização via LP</span>
+            <span class="audience-tag"><i class="fas fa-fire warm-audience"></i>Público Morno (Já te Conhece)</span>
+            <span class="delivery-date-tag"><i class="fas fa-calendar-alt"></i>1 a 7 de Abril de 2026</span>
+            <div class="journey-description">
+              <strong>Pontos Importantes:</strong>
+              <p>Direcionar o público morno para uma Landing Page educativa e de conscientização. Posteriormente o CRM distribui para contato no WhatsApp, agendando a visita.</p>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper facebook-icon"><i class="fab fa-facebook-f"></i></div>
+              <div class="icon-wrapper instagram-icon"><i class="fab fa-instagram"></i></div>
+            </div>
+            Meta ADS
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper globe-icon"><i class="fas fa-globe"></i></div>
+              <div class="icon-wrapper brain-icon"><i class="fas fa-lightbulb"></i></div>
+            </div>
+            Landing Page de conscientização
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper cogs-icon"><i class="fas fa-cogs"></i></div>
+              <div class="icon-wrapper whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="icon-wrapper marker-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="icon-wrapper dollar-icon"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <span>CRM <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> WP <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Visita <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Venda</span>
+          </div>
+        </div>
+        
+        <!-- Jornada 3: Jornada C -->
+        <div class="table-row" style="background: var(--pastel-mint);">
+          <div class="table-cell journey-name" style="background: var(--dark-mint);">
+            <div class="icon-cell"><div class="icon-wrapper ticket-icon"><i class="fas fa-ticket-alt"></i></div></div>
+            <strong>Jornada C</strong><span>Aquisição - Super Sábado / VIP Pass</span>
+            <span class="audience-tag"><i class="fas fa-snowflake cold-audience"></i>Público Frio (Não te Conhece)</span>
+            <span class="delivery-date-tag"><i class="fas fa-calendar-alt"></i>8 a 14 de Abril de 2026</span>
+            <div class="journey-description">
+              <strong>Pontos Importantes:</strong>
+              <p>Campanha de captura de lista focada totalmente no evento presencial "Super Sábado". Uso de Meta ADS para público que ainda não conhece o ecossistema.</p>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper facebook-icon"><i class="fab fa-facebook-f"></i></div>
+              <div class="icon-wrapper instagram-icon"><i class="fab fa-instagram"></i></div>
+            </div>
+            Meta ADS
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper globe-icon"><i class="fas fa-globe"></i></div>
+              <div class="icon-wrapper file-alt-icon"><i class="fas fa-file-alt"></i></div>
+            </div>
+            Landing Page de captura
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper cogs-icon"><i class="fas fa-cogs"></i></div>
+              <div class="icon-wrapper headset-icon"><i class="fas fa-headset"></i></div>
+              <div class="icon-wrapper ticket-icon"><i class="fas fa-calendar-check"></i></div>
+            </div>
+            <span>CRM <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Atd <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Evento</span>
+          </div>
+        </div>
+        
+        <!-- Jornada 4: Jornada D -->
+        <div class="table-row" style="background: var(--pastel-yellow);">
+          <div class="table-cell journey-name" style="background: var(--dark-yellow);">
+            <div class="icon-cell"><div class="icon-wrapper users-icon"><i class="fas fa-users"></i></div></div>
+            <strong>Jornada D</strong><span>Retenção / Member Get Member</span>
+            <span class="audience-tag"><i class="fas fa-fire warm-audience"></i>Público Morno (Já te Conhece)</span>
+            <span class="delivery-date-tag"><i class="fas fa-calendar-alt"></i>15 a 21 de Abril de 2026</span>
+            <div class="journey-description">
+              <strong>Pontos Importantes:</strong>
+              <p>Aproveitamento da base atual de alunos para indicações. A campanha roda internamente via e-mail e convite de WhatsApp, levando para uma página exclusiva.</p>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper envelope-icon"><i class="fas fa-envelope"></i></div>
+              <div class="icon-wrapper whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="text-center">Campanha interna (E-mail + WP)<br/><span style="font-size: 0.75rem; color: #666;">Convite VIP</span></div>
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper globe-icon"><i class="fas fa-globe"></i></div>
+              <div class="icon-wrapper share-icon"><i class="fas fa-share-alt"></i></div>
+            </div>
+            LP Para alunos - indicação
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper cogs-icon"><i class="fas fa-cogs"></i></div>
+              <div class="icon-wrapper headset-icon"><i class="fas fa-headset"></i></div>
+              <div class="icon-wrapper marker-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="icon-wrapper dollar-icon"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <span>CRM <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Atd <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Visita <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Venda</span>
+          </div>
+        </div>
+
+        <!-- Jornada 5: Jornada E -->
+        <div class="table-row" style="background: var(--pastel-blue);">
+          <div class="table-cell journey-name" style="background: var(--dark-blue);">
+            <div class="icon-cell"><div class="icon-wrapper crown-icon"><i class="fas fa-star"></i></div></div>
+            <strong>Jornada E</strong><span>Monetização CRM - Reativação</span>
+            <span class="audience-tag"><i class="fas fa-fire-alt hot-audience"></i>Público Quente (Já Comprou)</span>
+            <span class="delivery-date-tag"><i class="fas fa-calendar-alt"></i>22 ao fim de Abril de 2026</span>
+            <div class="journey-description">
+              <strong>Pontos Importantes:</strong>
+              <p>Reativação focada em ex-alunos através de SDR IA diretamente da base do CRM, convidando-os para uma visita presencial VIP.</p>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper robot-icon"><i class="fas fa-robot"></i></div>
+            </div>
+            SDR IA
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper marker-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="icon-wrapper crown-icon"><i class="fas fa-crown"></i></div>
+            </div>
+            VISITA PRESENCIAL VIP
+            <div class="arrow-container"><div class="arrow"></div></div>
+          </div>
+          <div class="table-cell">
+            <div class="icon-cell">
+              <div class="icon-wrapper marker-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="icon-wrapper headset-icon"><i class="fas fa-headset"></i></div>
+              <div class="icon-wrapper dollar-icon"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <span>Visita <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Atd <i class="fas fa-arrow-right mx-1" style="font-size:0.6rem;"></i> Venda</span>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="footer-note text-center">
+        <h3 class="text-white mb-1"><i class="fas fa-lightbulb mr-2" style="color:var(--v4-red);"></i> Estratégia Integrada</h3>
+        <p class="text-gray-300">As jornadas trabalham em sinergia para maximizar o alcance e a conversão em diferentes canais.</p>
+      </div>
+    </div>
+  </body>
+</html>
